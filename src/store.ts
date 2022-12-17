@@ -23,6 +23,8 @@ export const store: Store = reactive({
 
 export const allOut = computed(() => store.players.every((p) => p.out));
 
+export const currentPlayer = computed(() => store.players[store.currentTurn.player]);
+
 export const nextPlayer = computed(() => {
   let next = store.currentTurn.player + 1 === store.players.length ? 0 : store.currentTurn.player + 1;
 

@@ -2,8 +2,9 @@
 import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle } from "@ionic/vue";
 import { computed } from "vue";
 
+import { forfeit, next, undo } from "../../actions";
 import { TurnState } from "../../enums";
-import { store, allOut, nextPlayer, winner } from "../../store";
+import { store, allOut, currentPlayer, nextPlayer, winner } from "../../store";
 import { playerCurrentTurn } from "../../utils";
 
 import Scoreboard from "./Scoreboard/Scoreboard.vue";
@@ -13,7 +14,6 @@ import CurrentScore from "./CurrentScore.vue";
 const throwState = computed(() => store.currentTurn.state === TurnState.Throw);
 const resultState = computed(() => store.currentTurn.state === TurnState.Result || allOut.value);
 
-const currentPlayer = computed(() => store.players[store.currentTurn.player]);
 const turn = computed(() => playerCurrentTurn(store.currentTurn.player, store));
 
 const nextUp = computed(() => `Next up: ${store.players[nextPlayer.value].name}`);
@@ -25,25 +25,6 @@ const title = computed(() => {
   if (resultState.value) return `${name} threw ${turn.value.throw}!`;
   return name;
 });
-
-const forfeit = () => {
-  currentPlayer.value.forfeited = true;
-  currentPlayer.value.out = true;
-  store.currentTurn.state = TurnState.Result;
-};
-
-const next = () => {
-  store.currentTurn = {
-    player: nextPlayer.value,
-    state: TurnState.Throw
-  };
-};
-
-const undo = () => {
-  store.turns[store.currentTurn.player].pop();
-  store.players[store.currentTurn.player].out = false;
-  store.currentTurn.state = TurnState.Throw;
-};
 </script>
 
 
