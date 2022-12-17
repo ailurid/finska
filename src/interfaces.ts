@@ -3,6 +3,7 @@ import { TurnState } from "./enums";
 export interface Player {
   name: string;
   out?: boolean;
+  forfeited?: boolean;
 }
 
 export interface Turn {

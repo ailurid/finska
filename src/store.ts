@@ -1,7 +1,8 @@
 import { computed, reactive } from "vue";
 
 import { GameState, TurnState } from "./enums";
-import { Player, Turn, CurrentTurn } from "./interfaces";
+import { Player, Turn, CurrentTurn, PlayerScore } from "./interfaces";
+import { playerCurrentTurn } from "./utils";
 
 export interface Store {
   state: GameState;
@@ -43,3 +44,23 @@ export const maxTurns = computed(() => {
   return Math.max(...turns);
 });
 
+export const scores = computed<PlayerScore[]>(() =>
+  store.players.map((player, index) => {
+    const turn = playerCurrentTurn(index, store);
+    return { ...player, playerIndex: index, score: turn.score ?? 0 };
+  })
+);
+
+export const winner = computed<PlayerScore | null>(() => {
+  const remainingPlayers = scores.value.filter((player) => !player.out);
+  if (remainingPlayers.length === 1) {
+    return remainingPlayers[0];
+  }
+
+  const winningScore = scores.value.find((player) => player.score === 50);
+  if (winningScore) {
+    return winningScore;
+  }
+
+  return null;
+});
