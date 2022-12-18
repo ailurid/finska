@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import { PlayerScore } from "../../../interfaces";
-import { store, maxTurns } from "../../../store";
+import { PlayerScore } from "../../interfaces";
+import { store, maxTurns } from "../../store";
 
-import ScoreboardPlayerRound from "./ScoreboardPlayerRound.vue";
+import LeaderboardPlayerRound from "./LeaderboardPlayerRound.vue";
 
 const props = defineProps<{ playerScore: PlayerScore }>();
 
@@ -18,7 +18,7 @@ const className = computed(() => out.value ? "out" : "not-out");
   <tr :class="className">
     <td>{{ playerScore.name }}</td>
     <td class="number emphasis">{{ playerScore.score }}</td>
-    <ScoreboardPlayerRound class="number" v-for="round in rounds" :player-index="playerScore.playerIndex"
+    <LeaderboardPlayerRound class="number" v-for="round in rounds" :player-index="playerScore.playerIndex"
       :round-index="round" />
   </tr>
 </template>

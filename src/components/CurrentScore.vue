@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import { store } from "../../store";
-import { playerCurrentTurn } from "../../utils";
+import { store } from "../store";
+import { playerCurrentTurn } from "../utils";
 
 const currentScore = computed(() => playerCurrentTurn(store.currentTurn.player, store).score ?? 0);
 </script>

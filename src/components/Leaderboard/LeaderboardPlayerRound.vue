@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import { store } from "../../../store";
-import { playerRoundTurn } from "../../../utils";
+import { store } from "../../store";
+import { playerRoundTurn } from "../../utils";
 
 const props = defineProps<{ playerIndex: number, roundIndex: number }>();
 

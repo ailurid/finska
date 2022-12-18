@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { IonButton } from "@ionic/vue";
 
-import { TurnState } from "../../../enums";
-import { Turn } from "../../../interfaces";
-import { store } from "../../../store";
+import { TurnState } from "../../enums";
+import { Turn } from "../../interfaces";
+import { store } from "../../store";
 
 const props = defineProps<{ value: number }>();
 
@@ -31,11 +31,8 @@ const score = () => {
 </script>
 
 <template>
-  <ion-button @click="score">{{ value }}</ion-button>
+  <ion-button @click="score" size="large">{{ value }}</ion-button>
 </template>
 
 <style scoped>
-ion-button {
-  font-size: 0.9rem;
-}
 </style>

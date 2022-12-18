@@ -1,13 +1,16 @@
 <script setup lang="ts">
-import { IonButton, IonHeader, IonToolbar } from '@ionic/vue';
+import { useIonRouter, IonButton, IonHeader, IonToolbar } from '@ionic/vue';
 
 import { GameState, TurnState } from "../enums";
 import { store } from "../store";
+
+const ionRouter = useIonRouter();
 
 const start = () => {
   store.turns = store.players.map(() => []);
   store.state = GameState.Active;
   store.players = store.players.map((p) => ({ name: p.name }));
+  ionRouter.push('/game/');
 };
 
 const stop = () => {
@@ -17,6 +20,7 @@ const stop = () => {
     state: TurnState.Throw,
     player: 0
   };
+  ionRouter.push('/setup');
 };
 </script>
 

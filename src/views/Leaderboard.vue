@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { IonCard, IonCardContent } from "@ionic/vue";
+import { IonContent, IonPage } from '@ionic/vue';
 import { computed } from "vue";
 
-import { PlayerScore } from "../../../interfaces";
-import { store } from "../../../store";
-import { playerCurrentTurn } from "../../../utils";
+import { PlayerScore } from "../interfaces";
+import { store } from "../store";
+import { playerCurrentTurn } from "../utils";
 
-import ScoreboardPlayer from "./ScoreboardPlayer.vue";
+import LeaderboardPlayer from "../components/Leaderboard/LeaderboardPlayer.vue";
 
 // TODO: assigning player.out in this way means the value is outdated
 const scores = computed<PlayerScore[]>(() => store.players.map((player, index) => {
@@ -19,18 +19,18 @@ const out = computed(() => scores.value.filter((s) => store.players[s.playerInde
 </script>
 
 <template>
-  <ion-card mode="ios">
-    <ion-card-content>
+  <ion-page>
+    <ion-content class="ion-padding">
       <div>
         <table>
           <tbody>
-            <ScoreboardPlayer v-for="score, index in notOut" :player-score="score" />
-            <ScoreboardPlayer v-for="score, index in out" :player-score="score" />
+            <LeaderboardPlayer v-for="score, index in notOut" :player-score="score" />
+            <LeaderboardPlayer v-for="score, index in out" :player-score="score" />
           </tbody>
         </table>
       </div>
-    </ion-card-content>
-  </ion-card>
+    </ion-content>
+  </ion-page>
 </template>
 
 <style scoped>

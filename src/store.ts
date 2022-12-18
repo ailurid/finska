@@ -43,7 +43,7 @@ export const nextPlayer = computed(() => {
 
 export const maxTurns = computed(() => {
   const turns = store.turns.map((t) => t.length);
-  return Math.max(...turns);
+  return Math.max(...turns, 0);
 });
 
 export const scores = computed<PlayerScore[]>(() =>
