@@ -4,7 +4,11 @@ import { computed } from "vue";
 import { store } from "../store";
 import { playerCurrentTurn } from "../utils";
 
-const currentScore = computed(() => playerCurrentTurn(store.currentTurn.player, store).score ?? 0);
+const props = defineProps<{ playerIndex: number }>();
+
+const currentScore = computed(() => playerCurrentTurn(props.playerIndex, store).score ?? 0);
+
+// TODO: larger and smaller variants
 </script>
 
 <template>

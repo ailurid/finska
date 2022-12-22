@@ -16,8 +16,6 @@ const resultState = computed(() => store.currentTurn.state === TurnState.Result 
 
 const turn = computed(() => playerCurrentTurn(store.currentTurn.player, store));
 
-const nextUp = computed(() => `Next up: ${store.players[nextPlayer.value].name}`);
-
 const title = computed(() => {
   if (!currentPlayer.value) return "";
   const name = currentPlayer.value.name;
@@ -43,22 +41,20 @@ const title = computed(() => {
   <ion-page>
     <ion-content class="ion-padding">
       <ion-item lines="none">
-        <ion-button slot="end" v-if="throwState" color="danger" @click="forfeit" size="default"
-          >Forfeit game</ion-button
-        >
+        <ion-button slot="end" v-if="throwState" color="danger" @click="forfeit" size="small">
+          Forfeit game
+        </ion-button>
       </ion-item>
       <ion-item lines="none">
         <CurrentScore v-if="winner === null" :playerIndex="store.currentTurn.player" />
         <ion-title>{{ title }}</ion-title>
       </ion-item>
-      <ion-item lines="none">
-        <ThrowScore v-if="throwState" />
-        <template v-else>
-          <ion-button v-if="!store.players[store.currentTurn.player].forfeited" @click="undo" size="default"
-            >Undo</ion-button
-          >
-          <ion-button v-if="winner === null" slot="end" @click="next" size="default">{{ nextUp }}</ion-button>
-        </template>
+      <ThrowScore v-if="throwState" />
+      <ion-item v-else lines="none">
+        <ion-button v-if="!store.players[store.currentTurn.player].forfeited" @click="undo" size="default">
+          Undo
+        </ion-button>
+        <ion-button v-if="winner === null" slot="end" @click="next" size="default">Next</ion-button>
       </ion-item>
       <ion-item lines="none">
         <PlayOrder v-if="winner === null" />
@@ -71,7 +67,11 @@ const title = computed(() => {
 ion-content {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+}
+
+ion-item {
+  --padding-bottom: 0.5rem;
+  --padding-top: 0.5rem;
 }
 
 ion-title {
