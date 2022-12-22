@@ -4,37 +4,52 @@ import { computed } from "vue";
 import { store } from "../store";
 import { playerCurrentTurn } from "../utils";
 
-const props = defineProps<{ playerIndex: number }>();
+interface CurrentScoreProps {
+  playerIndex: number;
+  size?: "small" | "medium";
+}
+
+const props = defineProps<CurrentScoreProps>();
 
 const currentScore = computed(() => playerCurrentTurn(props.playerIndex, store).score ?? 0);
-
-// TODO: larger and smaller variants
+const className = computed(() => `circle ${props.size == undefined ? "small" : props.size}`);
 </script>
 
 <template>
-  <div class="circle">
-    <div class="circle-label">{{ currentScore }}</div>
+  <div :class="className">
+    {{ currentScore }}
   </div>
 </template>
 
 <style scoped>
 .circle {
+  --size-small: 3rem;
+  --size-medium: 4rem;
   background-color: var(--ion-color-secondary);
   color: var(--ion-color-secondary-contrast);
   border-radius: 50%;
+  font-size: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1rem;
-  height: 3rem;
-  min-height: 3rem;
-  max-height: 3rem;
-  width: 3rem;
-  min-width: 3rem;
-  max-width: 3rem;
 }
 
-.circle-label {
-  font-size: 1rem;
+.small {
+  height: var(--size-small);
+  min-height: var(--size-small);
+  max-height: var(--size-small);
+  width: var(--size-small);
+  min-width: var(--size-small);
+  max-width: var(--size-small);
+}
+
+.medium {
+  font-size: 1.5rem;
+  height: var(--size-medium);
+  min-height: var(--size-medium);
+  max-height: var(--size-medium);
+  width: var(--size-medium);
+  min-width: var(--size-medium);
+  max-width: var(--size-medium);
 }
 </style>

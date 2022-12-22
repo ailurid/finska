@@ -45,7 +45,7 @@ const title = computed(() => {
         <div class="container">
           <ion-list>
             <ion-item lines="none">
-              <CurrentScore v-if="winner === null" :playerIndex="store.currentTurn.player" slot="start" />
+              <CurrentScore v-if="winner === null" :playerIndex="store.currentTurn.player" size="medium" />
               <ion-title>{{ title }}</ion-title></ion-item
             >
           </ion-list>
@@ -69,6 +69,10 @@ const title = computed(() => {
 ion-item {
   --padding-bottom: 0.5rem;
   --padding-top: 0.5rem;
+}
+
+ion-item::part(native) {
+  justify-content: space-around;
 }
 
 ion-title {
