@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useIonRouter, IonButton, IonHeader, IonToolbar } from '@ionic/vue';
+import { useIonRouter, IonButton, IonHeader, IonToolbar } from "@ionic/vue";
 
 import { GameState, TurnState } from "../enums";
 import { store } from "../store";
@@ -10,7 +10,7 @@ const start = () => {
   store.turns = store.players.map(() => []);
   store.state = GameState.Active;
   store.players = store.players.map((p) => ({ name: p.name }));
-  ionRouter.push('/game/');
+  ionRouter.push("/game/");
 };
 
 const stop = () => {
@@ -20,7 +20,7 @@ const stop = () => {
     state: TurnState.Throw,
     player: 0
   };
-  ionRouter.push('/setup');
+  ionRouter.push("/setup");
 };
 </script>
 
@@ -33,7 +33,8 @@ const stop = () => {
         </div>
         <div>
           <ion-button v-if="store.state === GameState.Active" color="light" @click="stop">end game</ion-button>
-          <ion-button v-else :disabled="store.players.length < 2" color="secondary" @click="start">start playing!
+          <ion-button v-else :disabled="store.players.length < 2" color="secondary" @click="start"
+            >start playing!
           </ion-button>
         </div>
       </div>

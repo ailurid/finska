@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { IonApp, IonContent, IonRouterOutlet } from '@ionic/vue';
+import { IonApp, IonContent, IonRouterOutlet } from "@ionic/vue";
 
-import Header from './components/Header.vue';
+import Header from "./components/Header.vue";
 </script>
 
 <template>
@@ -13,5 +13,4 @@ import Header from './components/Header.vue';
   </ion-app>
 </template>
 
-<style>
-</style>
+<style></style>

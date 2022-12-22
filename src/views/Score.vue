@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IonButton, IonContent, IonItem, IonLabel, IonPage, IonTitle } from '@ionic/vue';
+import { IonButton, IonContent, IonItem, IonLabel, IonPage, IonTitle } from "@ionic/vue";
 import { computed } from "vue";
 
 import { forfeit, next, undo } from "../actions";
@@ -43,17 +43,21 @@ const title = computed(() => {
   <ion-page>
     <ion-content class="ion-padding">
       <ion-item lines="none">
-        <ion-button slot="end" v-if="throwState" color="danger" @click="forfeit" size="default">Forfeit game</ion-button>
+        <ion-button slot="end" v-if="throwState" color="danger" @click="forfeit" size="default"
+          >Forfeit game</ion-button
+        >
       </ion-item>
       <ion-item lines="none">
-        <CurrentScore v-if="winner === null" />
+        <CurrentScore v-if="winner === null" :playerIndex="store.currentTurn.player" />
         <ion-title>{{ title }}</ion-title>
       </ion-item>
       <ion-item lines="none">
         <ThrowScore v-if="throwState" />
         <template v-else>
-            <ion-button v-if="!store.players[store.currentTurn.player].forfeited" @click="undo" size="default">Undo</ion-button>
-            <ion-button v-if="winner === null" slot="end" @click="next" size="default">{{ nextUp }}</ion-button>
+          <ion-button v-if="!store.players[store.currentTurn.player].forfeited" @click="undo" size="default"
+            >Undo</ion-button
+          >
+          <ion-button v-if="winner === null" slot="end" @click="next" size="default">{{ nextUp }}</ion-button>
         </template>
       </ion-item>
       <ion-item lines="none">

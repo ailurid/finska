@@ -4,7 +4,7 @@ import { computed } from "vue";
 import { store } from "../../store";
 import { playerRoundTurn } from "../../utils";
 
-const props = defineProps<{ playerIndex: number, roundIndex: number }>();
+const props = defineProps<{ playerIndex: number; roundIndex: number }>();
 
 const out = computed(() => store.players[props.playerIndex]?.out);
 const turn = computed(() => playerRoundTurn(props.playerIndex, props.roundIndex, store));
@@ -13,7 +13,6 @@ const throwValue = computed(() => {
   if (out.value) return "-";
   return "";
 });
-
 </script>
 
 <template>
@@ -23,6 +22,4 @@ const throwValue = computed(() => {
   <td>{{ throwValue }}</td>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

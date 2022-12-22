@@ -37,7 +37,7 @@ const fakePlayers = () => {
 const onClick = () => {
   const added = addPlayer(name.value ?? "");
   if (added) {
-    name.value = '';
+    name.value = "";
   }
 };
 
@@ -55,8 +55,14 @@ const onKeyPress = (event: KeyboardEvent) => {
 
 <template>
   <ion-item fill="outline">
-    <ion-input class="name-input" placeholder="Enter name" :maxlength="20" v-model="name" @ionChange="onInputChange"
-      @keypress="onKeyPress"></ion-input>
+    <ion-input
+      class="name-input"
+      placeholder="Enter name"
+      :maxlength="20"
+      v-model="name"
+      @ionChange="onInputChange"
+      @keypress="onKeyPress"
+    ></ion-input>
     <ion-button :disabled="!canAddPlayer || !name" @click="onClick">add player</ion-button>
     <ion-button v-if="debug" @click="fakePlayers">
       <ion-icon :icon="colorWand"></ion-icon>
@@ -64,6 +70,4 @@ const onKeyPress = (event: KeyboardEvent) => {
   </ion-item>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

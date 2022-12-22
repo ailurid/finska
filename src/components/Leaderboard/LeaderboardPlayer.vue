@@ -11,15 +11,19 @@ const props = defineProps<{ playerScore: PlayerScore }>();
 const out = computed(() => store.players[props.playerScore.playerIndex]?.out);
 const rounds = computed(() => [...Array(maxTurns.value).keys()].reverse());
 
-const className = computed(() => out.value ? "out" : "not-out");
+const className = computed(() => (out.value ? "out" : "not-out"));
 </script>
 
 <template>
   <tr :class="className">
     <td>{{ playerScore.name }}</td>
     <td class="number emphasis">{{ playerScore.score }}</td>
-    <LeaderboardPlayerRound class="number" v-for="round in rounds" :player-index="playerScore.playerIndex"
-      :round-index="round" />
+    <LeaderboardPlayerRound
+      class="number"
+      v-for="round in rounds"
+      :player-index="playerScore.playerIndex"
+      :round-index="round"
+    />
   </tr>
 </template>
 

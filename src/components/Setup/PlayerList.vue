@@ -27,6 +27,4 @@ const removeAllPlayers = () => {
   </ion-item>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

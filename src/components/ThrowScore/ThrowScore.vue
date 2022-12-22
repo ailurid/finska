@@ -9,11 +9,9 @@ const validThrowScores = [...Array(13).keys()];
 <template>
   <ion-item lines="none">
     <ion-label text-wrap>
-      <ThrowScoreButton v-for="(score) in validThrowScores" :value="score" :key="score" />
+      <ThrowScoreButton v-for="score in validThrowScores" :value="score" :key="score" />
     </ion-label>
   </ion-item>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

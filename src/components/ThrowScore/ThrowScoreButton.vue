@@ -34,5 +34,4 @@ const score = () => {
   <ion-button @click="score" size="large">{{ value }}</ion-button>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
