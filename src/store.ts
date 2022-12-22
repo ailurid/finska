@@ -1,3 +1,4 @@
+import { inPlaceSort } from "fast-sort";
 import { computed, reactive } from "vue";
 
 import { GameState, TurnState } from "./enums";
@@ -46,12 +47,15 @@ export const maxTurns = computed(() => {
   return Math.max(...turns, 0);
 });
 
-export const scores = computed<PlayerScore[]>(() =>
-  store.players.map((player, index) => {
+export const rounds = computed(() => [...Array(maxTurns.value).keys()].reverse());
+
+export const scores = computed<PlayerScore[]>(() => {
+  const playerScores = store.players.map((player, index) => {
     const turn = playerCurrentTurn(index, store);
     return { ...player, playerIndex: index, score: turn.score ?? 0 };
-  })
-);
+  });
+  return inPlaceSort(playerScores).by([{ asc: (s) => store.players[s.playerIndex]?.out }, { desc: (s) => s.score }]);
+});
 
 export const winner = computed<PlayerScore | null>(() => {
   const remainingPlayers = scores.value.filter((player) => !player.out);

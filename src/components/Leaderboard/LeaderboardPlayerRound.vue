@@ -11,14 +11,11 @@ const turn = computed(() => playerRoundTurn(props.playerIndex, props.roundIndex,
 const throwValue = computed(() => {
   if (turn.value.throw !== undefined) return turn.value.throw;
   if (out.value) return "-";
-  return "";
+  return String.fromCharCode(160);
 });
 </script>
 
 <template>
-  <!-- TODO: expand to see the score and throw value -->
-  <!-- TODO: edit throw value in case of incorrect data entry -->
-  <!-- TODO: also need to update any following scores and check if anyone won or went out -->
   <td>{{ throwValue }}</td>
 </template>
 

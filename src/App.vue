@@ -13,4 +13,31 @@ import Header from "./components/Header.vue";
   </ion-app>
 </template>
 
-<style></style>
+<style>
+.container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--ion-color-light-shade);
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--ion-color-light-tint);
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-corner,
+*::-webkit-scrollbar-gutter {
+  background: var(--ion-color-danger);
+}
+</style>

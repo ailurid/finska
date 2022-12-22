@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { IonButton, IonContent, IonItem, IonLabel, IonPage, IonTitle } from "@ionic/vue";
+import { IonButton, IonContent, IonItem, IonList, IonPage, IonTitle } from "@ionic/vue";
 import { computed } from "vue";
 
 import { forfeit, next, undo } from "../actions";
 import { TurnState } from "../enums";
-import { store, allOut, currentPlayer, nextPlayer, winner } from "../store";
+import { store, allOut, currentPlayer, winner } from "../store";
 import { playerCurrentTurn } from "../utils";
 
 import ThrowScore from "../components/ThrowScore/ThrowScore.vue";
@@ -28,13 +28,9 @@ const title = computed(() => {
 
 <!--
   TODO:
-    prefer spa / address bar url to not change on routing 
-    more spacing between ion-item elements
-    conditional styling of title
-    why doesn't the styling on ion-content work
-    style next up list
-    style leaderboard
+    prefer spa / address bar url to not change on routing
     maybe move undo/next buttons above title
+    allow undo forfeit?
 -->
 
 <template>
@@ -46,8 +42,14 @@ const title = computed(() => {
         </ion-button>
       </ion-item>
       <ion-item lines="none">
-        <CurrentScore v-if="winner === null" :playerIndex="store.currentTurn.player" />
-        <ion-title>{{ title }}</ion-title>
+        <div class="container">
+          <ion-list>
+            <ion-item lines="none">
+              <CurrentScore v-if="winner === null" :playerIndex="store.currentTurn.player" slot="start" />
+              <ion-title>{{ title }}</ion-title></ion-item
+            >
+          </ion-list>
+        </div>
       </ion-item>
       <ThrowScore v-if="throwState" />
       <ion-item v-else lines="none">
@@ -64,11 +66,6 @@ const title = computed(() => {
 </template>
 
 <style scoped>
-ion-content {
-  display: flex;
-  flex-direction: column;
-}
-
 ion-item {
   --padding-bottom: 0.5rem;
   --padding-top: 0.5rem;
