@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "@ionic/vue-router";
+import { createRouter, createMemoryHistory } from "@ionic/vue-router";
 import { RouteRecordRaw } from "vue-router";
 
 import Game from "./views/Game.vue";
@@ -39,7 +39,7 @@ const routes: Array<RouteRecordRaw> = [
 ];
 
 export const router = createRouter({
-  history: createWebHistory(),
+  history: createMemoryHistory(),
   routes
 });
 
