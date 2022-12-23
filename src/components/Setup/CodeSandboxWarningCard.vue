@@ -6,8 +6,8 @@ import { shouldRedirect, ghPagesUrl } from "../../utils";
 const show = shouldRedirect(window.location.href);
 </script>
 
-<template v-if="show">
-  <a :href="ghPagesUrl">
+<template>
+  <a :href="ghPagesUrl" v-if="show">
     <ion-card>
       <ion-card-header>
         <ion-card-title class="ion-text-wrap ion-text-center">
