@@ -8,6 +8,7 @@ import Setup from "./views/Setup.vue";
 
 import { GameState } from "./enums";
 import { store } from "./store";
+// import { shouldRedirect, ghPagesUrl } from "./utils";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -16,6 +17,12 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/setup",
+    // beforeEnter(to, from) {
+    //   if (shouldRedirect(window.location.href)) {
+    //     // TODO: let the user know they've been redirected and why?
+    //     window.location.href = ghPagesUrl;
+    //   }
+    // },
     component: Setup
   },
   {
