@@ -28,7 +28,6 @@ const title = computed(() => {
 
 <!--
   TODO:
-    prefer spa / address bar url to not change on routing
     maybe move undo/next buttons above title
     allow undo forfeit?
 -->
